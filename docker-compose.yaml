@@ -1,0 +1,33 @@
+services:
+  db:
+    image: postgres:latest
+    container_name: todo-db
+    env_file:
+      - .env
+    ports:
+      - "${DB_PORT}:5432"
+    volumes:
+      - db_data:/var/lib/postgresql/data
+    networks:
+      - todo-network
+
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: todo-app
+    depends_on:
+      - db
+    ports:
+      - "${APP_PORT}:8000"
+    env_file:
+      - .env
+    networks:
+      - todo-network
+
+volumes:
+  db_data:
+
+networks:
+  todo-network:
+

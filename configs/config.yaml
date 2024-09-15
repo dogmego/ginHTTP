@@ -2,7 +2,7 @@ port: "8000"
 
 db:
   username: "postgres"
-  host: "localhost"
-  port: "5436"
+  host: "db"         # Изменено с "localhost" на "db"
+  port: "5432"       # Изменено с "5436" на "5432"
   dbname: "postgres"
   sslmode: "disable"
